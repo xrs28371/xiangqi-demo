@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2b1b0f">
+<meta name="description" content="楚河漢界 · 中国象棋在线对弈演示，玩家执红对弈电脑黑方。">
+<title>楚河漢界 · 中国象棋在线对弈演示</title>
+<link rel="preload" as="image" href="assets/table-wood.webp" type="image/webp">
+<link rel="preload" as="image" href="assets/board-wood.webp" type="image/webp">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-plaque">
+        <h1 class="brand-title">楚河漢界</h1>
+      </div>
+      <p class="brand-sub">中国象棋 · 在线对弈演示</p>
+    </div>
+    <div class="seal" role="img" aria-label="象棋印章"><span>象</span><span>棋</span></div>
+  </header>
+
+  <main class="stage">
+    <section class="board-area" aria-label="对弈区">
+      <div class="side-script" aria-hidden="true">
+        <span class="side-script-text">對弈</span>
+        <span class="side-script-seal">楚</span>
+      </div>
+      <div class="board-case">
+        <div class="board-frame">
+          <div class="board" id="board" aria-label="棋盘"></div>
+          <div class="check-flash" id="checkFlash" aria-hidden="true"><span>将</span><span>军</span></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel" aria-label="控制面板">
+      <div class="panel-block status-block" aria-live="polite">
+        <div class="plaque" aria-hidden="true">局勢</div>
+        <div class="turn-line" id="turnLine">
+          <span class="turn-dot red" id="turnDot"></span>
+          <span class="turn-text" id="turnText">正在摆棋……</span>
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+        <div class="check-alert" id="checkAlert" hidden>
+          <strong>将军！</strong>
+          <span id="checkText">红方被将</span>
+        </div>
+      </div>
+
+      <div class="panel-block">
+        <h2 class="block-title">难度</h2>
+        <div class="levels" role="group" aria-label="电脑难度">
+          <button type="button" class="level-btn" data-level="1" aria-pressed="false">新手</button>
+          <button type="button" class="level-btn" data-level="2" aria-pressed="true">进阶</button>
+          <button type="button" class="level-btn" data-level="3" aria-pressed="false">高手</button>
+        </div>
+        <p class="level-note" id="levelNote">当前：进阶 · 切换即时生效</p>
+      </div>
+
+      <div class="panel-block actions">
+        <div class="plaque" aria-hidden="true">局務</div>
+        <button type="button" class="btn" id="btnRestart">重新开始</button>
+        <button type="button" class="btn" id="btnUndo" disabled>悔棋</button>
+      </div>
+
+      <div class="panel-block log-block">
+        <h2 class="block-title">着法记录 <span class="count" id="moveCount">共 0 步</span></h2>
+        <ol class="move-log" id="moveLog"></ol>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer">演示版 · 人机对弈<span class="footer-seal" aria-hidden="true">弈</span></footer>
+</div>
+
+<div class="modal-mask" id="resultModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle" aria-describedby="resultDesc">
+    <div class="modal-seal win" id="resultSeal">胜</div>
+    <h2 id="resultTitle">红方胜</h2>
+    <p id="resultDesc">恭喜，你以红方取胜！</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-primary" id="btnAgain">再来一局</button>
+      <button type="button" class="btn" id="btnReview">观看棋局</button>
+    </div>
+  </div>
+</div>
+
+<script src="engine.js"></script>
+<script src="ai.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>
